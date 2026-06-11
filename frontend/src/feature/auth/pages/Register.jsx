@@ -24,7 +24,7 @@ export const Register = () => {
 
       const response = await axios.post(
         "http://localhost:3000/api/register",
-        userData,{withCredentials:true}
+        userData
       );
 
       console.log(response.data);
