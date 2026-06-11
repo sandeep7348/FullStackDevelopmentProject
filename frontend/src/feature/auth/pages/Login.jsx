@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import axios from "axios";
 import "../../style/form.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
@@ -9,35 +9,26 @@ export const Login = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
+  const { handlelogin } = useAuth();
+  const navigate = useNavigate();
+
   async function handleSubmit(e) {
     e.preventDefault();
 
-    setError("");
-    setSuccess("");
-
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/login",
-        {
-          email,
-          password,
-        }
-      );
-
-      console.log(response.data);
+      await handlelogin(email, password);
 
       setSuccess("Login successful!");
+      setError("");
 
-      setEmail("");
-      setPassword("");
-    } catch (error) {
-      console.error("LOGIN ERROR:", error);
-
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
+    } catch (err) {
       setError(
-        error.response?.data?.message ||
-          error.message ||
-          "Something went wrong"
+        err.response?.data?.message || "Invalid email or password"
       );
+      setSuccess("");
     }
   }
 
@@ -63,7 +54,9 @@ export const Login = () => {
             required
           />
 
-          <button type="submit">Login</button>
+          <button type="submit">
+            Login
+          </button>
         </form>
 
         {error && (
