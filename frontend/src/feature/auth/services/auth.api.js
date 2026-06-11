@@ -22,3 +22,14 @@ export async function login(email,password){
         throw error;
     }
 }
+
+export async function getProfile(id){
+    try{
+        const response=await axios.get(`http://localhost:3000/api/profile/${id}`)
+        return response.data
+
+    }
+    catch(err){
+        throw err
+    }
+}
