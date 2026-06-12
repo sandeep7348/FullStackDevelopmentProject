@@ -2,6 +2,13 @@ import React, { useEffect } from "react";
 import "../style/feed.scss";
 import { usePost } from "../hooks/usePost";
 
+import {
+  FaHeart,
+  FaRegComment,
+  FaPaperPlane,
+  FaRegBookmark,
+} from "react-icons/fa";
+
 export const Feed = () => {
   const { post, loading, handleAllPost } = usePost();
 
@@ -16,6 +23,7 @@ export const Feed = () => {
       img_url: "https://picsum.photos/500/600?random=1",
       user: {
         username: "sandeep",
+        profile_url: "https://i.pravatar.cc/150?img=1",
       },
     },
     {
@@ -24,6 +32,7 @@ export const Feed = () => {
       img_url: "https://picsum.photos/500/600?random=2",
       user: {
         username: "developer",
+        profile_url: "https://i.pravatar.cc/150?img=2",
       },
     },
   ];
@@ -41,10 +50,13 @@ export const Feed = () => {
         {postsToShow.map((item) => (
           <div className="post" key={item._id}>
             <div className="user">
-             <img
-  src={item.user?.profile_url || "https://i.pravatar.cc/150"}
-  alt="profile"
-/>
+              <img
+                src={
+                  item.user?.profile_url ||
+                  "https://i.pravatar.cc/150"
+                }
+                alt="profile"
+              />
 
               <div className="user-info">
                 <p className="username">
@@ -58,6 +70,26 @@ export const Feed = () => {
                 src={item.img_url}
                 alt={item.caption}
               />
+            </div>
+
+            <div className="post-actions">
+              <div className="left-actions">
+                <button>
+                  <FaHeart />
+                </button>
+
+                <button>
+                  <FaRegComment />
+                </button>
+
+                <button>
+                  <FaPaperPlane />
+                </button>
+              </div>
+
+              <button className="save-btn">
+                <FaRegBookmark />
+              </button>
             </div>
 
             <div className="content">
