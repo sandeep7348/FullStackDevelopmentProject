@@ -41,10 +41,10 @@ export const Feed = () => {
         {postsToShow.map((item) => (
           <div className="post" key={item._id}>
             <div className="user">
-              <img
-                src={`https://i.pravatar.cc/150?u=${item._id}`}
-                alt="profile"
-              />
+             <img
+  src={item.user?.profile_url || "https://i.pravatar.cc/150"}
+  alt="profile"
+/>
 
               <div className="user-info">
                 <p className="username">

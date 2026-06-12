@@ -3,6 +3,7 @@ import { Login } from "./feature/auth/pages/Login";
 import { Register } from "./feature/auth/pages/Register";
 import { Home } from "./Home";
 import { Feed } from "./feature/post/pages/feed";
+import FeedUpdate from "./feature/post/pages/feedUpload"
 export const routes = createBrowserRouter([
   {
     path: "/login",
@@ -19,5 +20,8 @@ export const routes = createBrowserRouter([
   },{
     path:"/feed",
     element:<Feed/>
+  },{
+    path:"/post/update",
+    element:<FeedUpdate/>
   }
 ]);
