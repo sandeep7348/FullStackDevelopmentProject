@@ -71,7 +71,7 @@ export function PostProvider({children})
         }
     }
     return (
-    <PostContecxt.Provider
+    <PostContext.Provider
         value={{
             post,
             loading,
@@ -82,6 +82,6 @@ export function PostProvider({children})
         }}
     >
         {children}
-    </PostContecxt.Provider>
+    </PostContext.Provider>
 );
 }

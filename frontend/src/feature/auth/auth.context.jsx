@@ -12,22 +12,51 @@ export function AuthProvider({ children }) {
 
     try {
       const response = await login(email, password);
+
+      console.log("Login Success:", response);
+
       setUser(response.user);
+
+      localStorage.setItem(
+        "userId",
+        response.user.id
+      );
+
       return response;
     } catch (err) {
       console.error("Login Error:", err);
+      console.error("Response Data:", err.response?.data);
+
+      alert(
+        JSON.stringify(
+          err.response?.data || err.message,
+          null,
+          2
+        )
+      );
+
       throw err;
     } finally {
       setLoading(false);
     }
   };
 
-  const handleregister = async (username, email, password) => {
+  const handleregister = async (
+    username,
+    email,
+    password
+  ) => {
     setLoading(true);
 
     try {
-      const response = await register(username, email, password);
+      const response = await register(
+        username,
+        email,
+        password
+      );
+
       setUser(response.user);
+
       return response;
     } catch (err) {
       console.error("Register Error:", err);

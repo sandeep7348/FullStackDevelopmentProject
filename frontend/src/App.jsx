@@ -1,16 +1,18 @@
-import { RouterProvider } from "react-router"
-import {routes} from "./routes"
-import "./style.scss"
-import { AuthProvider } from "./feature/auth/auth.context"
+import { RouterProvider } from "react-router";
+import { routes } from "./routes";
+import "./style.scss";
+
+import { AuthProvider } from "./feature/auth/auth.context";
+import { PostProvider } from "./feature/post/post.context";
 
 function App() {
-  
-
-  return(
+  return (
     <AuthProvider>
-    <RouterProvider router={routes}/>
+      <PostProvider>
+        <RouterProvider router={routes} />
+      </PostProvider>
     </AuthProvider>
-  )
+  );
 }
 
-export default App
+export default App;
